@@ -46,6 +46,9 @@ http:
       middlewares:
         - redirect
       service: dummy@internal
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
 
   middlewares:
     csrf:
