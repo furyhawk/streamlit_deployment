@@ -34,7 +34,7 @@ http:
         - web-secure
       middlewares:
         - csrf
-        - replacepath-fin
+        - add-fin
       service: streamlit_app
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
@@ -59,9 +59,9 @@ http:
       headers:
         hostsProxyHeaders: ["X-CSRFToken"]
 
-    replacepath-fin:
-      replacePath:
-        path: "/fin"
+    add-fin:
+      addPrefix:
+        prefix: "/fin"
 
     redirect-blog:
       # https://docs.traefik.io/master/middlewares/redirectscheme/
