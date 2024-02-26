@@ -29,7 +29,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`)"
+      rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`, `fin.furyhawk.lol`)"
       entryPoints:
         - web-secure
       middlewares:
