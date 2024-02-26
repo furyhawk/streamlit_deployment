@@ -45,9 +45,7 @@ http:
       # redirect to external blog
       middlewares:
         - redirect
-      service:
-        - name: noop@internal
-          kind: TraefikService
+      service: dummy
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
