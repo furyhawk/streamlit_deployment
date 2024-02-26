@@ -34,7 +34,7 @@ http:
         - web-secure
       middlewares:
         - csrf
-        - add-fin
+        - replacepath-fin
       service: streamlit_app
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
@@ -54,14 +54,14 @@ http:
 
   middlewares:
     csrf:
-      # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
+      # https://doc.traefik.io/traefik/middlewares/http/headers/#hostsproxyheaders
       # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
       headers:
         hostsProxyHeaders: ["X-CSRFToken"]
 
-    add-fin:
-      addPrefix:
-        prefix: "/fin"
+    replacepath-fin:
+      replacePath:
+        path: "/fin"
 
     redirect-blog:
       # https://docs.traefik.io/master/middlewares/redirectscheme/
