@@ -44,8 +44,8 @@ http:
         - web-secure
       # redirect to external blog
       middlewares:
-        - redirect
-      service: dummy
+        - redirect-blog
+      service: blog
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
@@ -57,7 +57,7 @@ http:
       headers:
         hostsProxyHeaders: ["X-CSRFToken"]
 
-    redirect:
+    redirect-blog:
       # https://docs.traefik.io/master/middlewares/redirectscheme/
       redirectregex:
         regex: "^https://blog.furyhawk.lol/(.*)"
@@ -69,7 +69,7 @@ http:
       loadBalancer:
         servers:
           - url: http://streamlit_app:8501
-    dummy:
+    blog:
       loadBalancer:
         servers:
           - url: https://furyhawk.github.io/124c41/
