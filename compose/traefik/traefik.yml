@@ -68,7 +68,7 @@ http:
     streamlit_app:
       loadBalancer:
         servers:
-          - url: http://streamlit_app:8501
+          - url: http://streamlit_app:8501/fin
     blog:
       loadBalancer:
         servers:

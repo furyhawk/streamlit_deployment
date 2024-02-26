@@ -15,10 +15,10 @@ RUN bash -c 'echo -e "\
 [general]\n\
 email = \"\"\n\
 " > /root/.streamlit/credentials.toml'
-# RUN bash -c 'echo -e "\
-# [server]\n\
-# enableCORS = false\n\
-# " > /root/.streamlit/config.toml'
+RUN bash -c 'echo -e "\
+[server]\n\
+baseUrlPath = /fin\n\
+" > /root/.streamlit/config.toml'
 
 # copy over and install packages
 COPY ./src/requirements.txt ./requirements.txt
