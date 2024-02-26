@@ -17,7 +17,7 @@ email = \"\"\n\
 " > /root/.streamlit/credentials.toml'
 RUN bash -c 'echo -e "\
 [server]\n\
-baseUrlPath = /fin\n\
+baseUrlPath = "/fin"\n\
 " > /root/.streamlit/config.toml'
 
 # copy over and install packages
