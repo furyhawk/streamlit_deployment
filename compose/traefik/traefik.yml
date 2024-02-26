@@ -69,6 +69,10 @@ http:
       loadBalancer:
         servers:
           - url: http://streamlit_app:8501
+    dummy:
+      loadBalancer:
+        servers:
+          - url: https://furyhawk.github.io/124c41/
 
 providers:
   # https://docs.traefik.io/master/providers/file/
