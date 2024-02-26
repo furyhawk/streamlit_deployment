@@ -22,6 +22,7 @@ services:
     image: traefik_production
     volumes:
       - production_traefik:/etc/traefik/acme:z
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"

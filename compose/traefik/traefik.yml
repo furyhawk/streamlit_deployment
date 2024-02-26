@@ -10,6 +10,7 @@ entryPoints:
       redirections:
         entryPoint:
           to: web-secure
+          scheme: https
 
   web-secure:
     # https
@@ -28,7 +29,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`furyhawk.lol`)"
+      rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`)"
       entryPoints:
         - web-secure
       middlewares:
@@ -37,6 +38,14 @@ http:
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
+    blog-router:
+      rule: "Host(`blog.furyhawk.lol`)"
+      entryPoints:
+        - web-secure
+      # redirect to blog
+      middlewares:
+        - redirect
+      service: dummy@internal
 
   middlewares:
     csrf:
@@ -44,6 +53,13 @@ http:
       # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
       headers:
         hostsProxyHeaders: ["X-CSRFToken"]
+
+    redirect:
+      # https://docs.traefik.io/master/middlewares/redirectscheme/
+      redirectregex:
+        regex: "^https://bai.furyhawk.lol/(.*)"
+        replacement: "https://furyhawk.github.io/${1}"
+        permanent: true
 
   services:
     streamlit_app:
