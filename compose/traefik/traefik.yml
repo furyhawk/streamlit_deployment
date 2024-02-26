@@ -42,9 +42,12 @@ http:
       rule: "Host(`blog.furyhawk.lol`)"
       entryPoints:
         - web-secure
-      # redirect to blog
+      # redirect to external blog
       middlewares:
         - redirect
+      service:
+        - name: noop@internal
+          kind: TraefikService
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
@@ -60,7 +63,7 @@ http:
       # https://docs.traefik.io/master/middlewares/redirectscheme/
       redirectregex:
         regex: "^https://blog.furyhawk.lol/(.*)"
-        replacement: "https://furyhawk.github.io/${1}"
+        replacement: "https://furyhawk.github.io/124c41/${1}"
         permanent: true
 
   services:
