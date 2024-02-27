@@ -1,8 +1,8 @@
 version: '3.4'
 
 x-env: &env
-  FIN_LOCATION: "/fin"
-  STREAMLIT_FIN_SERVER_PORT: "8501"
+  - FIN_LOCATION="/fin"
+  - STREAMLIT_FIN_SERVER_PORT="8501"
 
 volumes:
   production_traefik: {}
