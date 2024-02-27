@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`, `bai.furyhawk.lol`)"
+      rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`, `bai.furyhawk.lol`) || PathPrefix(`/bai`)"
       entryPoints:
         - web-secure
       middlewares:
