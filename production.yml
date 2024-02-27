@@ -4,12 +4,12 @@ volumes:
   production_traefik: {}
 
 services:
-  streamlit:
+  streamlit-fin:
     build: 
       context: .
-      dockerfile: ./compose/streamlit/Dockerfile
-    image: streamlit_production
-    container_name: streamlit_app
+      dockerfile: ./compose/streamlit-fin/Dockerfile
+    image: streamlit_fin_production
+    container_name: streamlit_fin_app
     restart: always
     expose:
       - "8501"

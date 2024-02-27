@@ -35,7 +35,7 @@ http:
       middlewares:
         - csrf
         - add-fin
-      service: streamlit_app
+      service: streamlit_fin_app
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
@@ -71,10 +71,10 @@ http:
         permanent: true
 
   services:
-    streamlit_app:
+    streamlit_fin_app:
       loadBalancer:
         servers:
-          - url: http://streamlit_app:8501/fin
+          - url: http://streamlit_fin_app:8501/fin
     blog:
       loadBalancer:
         servers:

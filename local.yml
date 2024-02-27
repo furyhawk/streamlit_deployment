@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  streamlit:
+  streamlit-fin:
     build: 
       context: .
-      dockerfile: ./compose/streamlit/Dockerfile
-    image: streamlit_local
-    container_name: streamlit_app
+      dockerfile: ./compose/streamlit-fin/Dockerfile
+    image: streamlit_fin_local
+    container_name: streamlit_fin_app
     restart: always
     ports:
       - 8501:8501
