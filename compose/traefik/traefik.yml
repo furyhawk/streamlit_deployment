@@ -74,7 +74,7 @@ http:
     streamlit_fin_app:
       loadBalancer:
         servers:
-          - url: http://streamlit_fin_app:8501/fin
+          - url: http://streamlit_fin_app:{{env "STREAMLIT_FIN_SERVER_PORT"}}/fin
     blog:
       loadBalancer:
         servers:

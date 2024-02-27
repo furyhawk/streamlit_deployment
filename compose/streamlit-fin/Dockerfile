@@ -9,21 +9,21 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
+# copy over and install packages
+COPY ./src/requirements.txt ./requirements.txt
+RUN pip3 install cython
+RUN pip3 install -r requirements.txt
+
 # streamlit-specific commands
 RUN mkdir -p /root/.streamlit
 RUN bash -c 'echo -e "\
 [general]\n\
 email = \"\"\n\
 " > /root/.streamlit/credentials.toml'
-RUN bash -c 'echo -e "\
-[server]\n\
-baseUrlPath = \"/fin\"\n\
-" > /root/.streamlit/config.toml'
-
-# copy over and install packages
-COPY ./src/requirements.txt ./requirements.txt
-RUN pip3 install cython
-RUN pip3 install -r requirements.txt
+# RUN bash -c 'echo -e "\
+# [server]\n\
+# baseUrlPath = \"/fin\"\n\
+# " > /root/.streamlit/config.toml'
 
 # copying everything over
 COPY . .
