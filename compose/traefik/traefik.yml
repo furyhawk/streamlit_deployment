@@ -1,8 +1,8 @@
 log:
   level: DEBUG
-# api:
+api:
   # Dashboard
-  # dashboard: true
+  dashboard: true
   # https://docs.traefik.io/master/operations/api/#insecure
   # insecure: true
   
@@ -36,16 +36,12 @@ certificatesResolvers:
 
 http:
   routers:
-    # dashboard:
-    #   rule: "Host(`dashboard.furyhawk.lol`)"
-    #   service: api@internal
-    #   middlewares:
-    #     - csrf
-    #   entryPoints:
-    #     - web-secure
-    #   tls:
-    #     # https://docs.traefik.io/master/routing/routers/#certresolver
-    #     certResolver: letsencrypt
+    dashboard:
+      rule: "Host(`dashboard.furyhawk.lol`)"
+      service: api@internal
+      middlewares:
+        - auth
+
     web-secure-router:
       rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`, `bai.furyhawk.lol`) || PathPrefix(`/bai`)"
       entryPoints:
@@ -94,6 +90,10 @@ http:
         certResolver: letsencrypt
 
   middlewares:
+    auth:
+      basicAuth:
+        users:
+          - "test:$apr1$2E4PEW8M$/wEgFNKX71h.YYMywV7WZ/"
     csrf:
       # https://doc.traefik.io/traefik/middlewares/http/headers/#hostsproxyheaders
       # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
