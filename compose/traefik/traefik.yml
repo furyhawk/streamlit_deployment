@@ -103,7 +103,7 @@ http:
     osrm_service:
       loadBalancer:
         servers:
-          - url: http://osrm-backend:{{env "OSRM_PORT"}}
+          - url: http://osrm_backend:{{env "OSRM_PORT"}}
     streamlit_bai_app:
       loadBalancer:
         servers:

@@ -25,7 +25,7 @@ services:
       # Notify OSRM Manager to restart without stopping container
       - OSRM_NOTIFY_FILEPATH=/data/osrm_notify.txt
     image: furyhawk/osrm-backend:${OSRM_VERSION:-latest}
-    container_name: osrm-backend
+    container_name: osrm_backend
     restart: always
     expose:
       - ${OSRM_PORT}
