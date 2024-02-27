@@ -1,5 +1,5 @@
 log:
-  level: ${LOG_LEVEL}
+  level: {{env "LOG_LEVEL"}}
 
 entryPoints:
   web:
