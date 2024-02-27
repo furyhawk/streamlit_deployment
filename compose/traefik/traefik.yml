@@ -16,6 +16,9 @@ entryPoints:
     # https
     address: ":443"
 
+  osrm:
+    address: ":5000"
+
 certificatesResolvers:
   letsencrypt:
     # https://docs.traefik.io/master/https/acme/#lets-encrypt
@@ -66,7 +69,8 @@ http:
     osrm-router:
       rule: "Host(`osrm.furyhawk.lol`)"
       entryPoints:
-        - web-secure
+        - "web-secure"
+        - "osrm"
       middlewares:
         - csrf
       service: osrm_service
