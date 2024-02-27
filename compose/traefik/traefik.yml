@@ -1,25 +1,21 @@
 log:
   level: DEBUG
-api:
+# api:
   # Dashboard
-  #
-  # Optional
-  # Default: true
-  #
-  dashboard: true
+  # dashboard: true
   # https://docs.traefik.io/master/operations/api/#insecure
-  insecure: true
+  # insecure: true
   
 
 entryPoints:
   web:
     # http
     address: ":80"
-    # http:
-    #   # https://docs.traefik.io/routing/entrypoints/#entrypoint
-    #   redirections:
-    #     entryPoint:
-    #       to: web-secure
+    http:
+      # https://docs.traefik.io/routing/entrypoints/#entrypoint
+      redirections:
+        entryPoint:
+          to: web-secure
 
   web-secure:
     # https
