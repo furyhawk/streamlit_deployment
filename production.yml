@@ -10,7 +10,7 @@ volumes:
 
 services:
   streamlit-fin:
-    <<: *env
+    environment: *env
     build: 
       context: .
       dockerfile: ./compose/streamlit-fin/Dockerfile
