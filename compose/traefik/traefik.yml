@@ -15,11 +15,11 @@ entryPoints:
   web:
     # http
     address: ":80"
-    http:
-      # https://docs.traefik.io/routing/entrypoints/#entrypoint
-      redirections:
-        entryPoint:
-          to: web-secure
+    # http:
+    #   # https://docs.traefik.io/routing/entrypoints/#entrypoint
+    #   redirections:
+    #     entryPoint:
+    #       to: web-secure
 
   web-secure:
     # https
@@ -40,16 +40,16 @@ certificatesResolvers:
 
 http:
   routers:
-    dashboard:
-      rule: "Host(`dashboard.furyhawk.lol`)"
-      service: api@internal
-      middlewares:
-        - csrf
-      entryPoints:
-        - web-secure
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
+    # dashboard:
+    #   rule: "Host(`dashboard.furyhawk.lol`)"
+    #   service: api@internal
+    #   middlewares:
+    #     - csrf
+    #   entryPoints:
+    #     - web-secure
+    #   tls:
+    #     # https://docs.traefik.io/master/routing/routers/#certresolver
+    #     certResolver: letsencrypt
     web-secure-router:
       rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`, `bai.furyhawk.lol`) || PathPrefix(`/bai`)"
       entryPoints:
