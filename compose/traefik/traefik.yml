@@ -29,7 +29,18 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`, `fin.furyhawk.lol`) || PathPrefix(`/fin`)"
+      rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`, `bai.furyhawk.lol`)"
+      entryPoints:
+        - web-secure
+      middlewares:
+        - csrf
+        - add-bai
+      service: streamlit_bai_app
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
+    fin-router:
+      rule: "Host(`fin.furyhawk.lol`)"
       entryPoints:
         - web-secure
       middlewares:
@@ -59,6 +70,10 @@ http:
       headers:
         hostsProxyHeaders: ["X-CSRFToken"]
 
+    add-bai:
+      addPrefix:
+        prefix: "/bai"
+
     add-fin:
       addPrefix:
         prefix: "/fin"
@@ -71,6 +86,10 @@ http:
         permanent: true
 
   services:
+    streamlit_bai_app:
+      loadBalancer:
+        servers:
+          - url: http://streamlit_bai_app:{{env "STREAMLIT_BAI_SERVER_PORT"}}/bai
     streamlit_fin_app:
       loadBalancer:
         servers:
