@@ -15,8 +15,8 @@ entryPoints:
     # https
     address: ":443"
 
-  osrm:
-    address: ":5000"
+  # osrm:
+  #   address: ":5000"
 
 certificatesResolvers:
   letsencrypt:
@@ -69,7 +69,7 @@ http:
       rule: "Host(`osrm.furyhawk.lol`)"
       entryPoints:
         - "web-secure"
-        - "osrm"
+        # - "osrm"
       middlewares:
         - csrf
       service: osrm_service
