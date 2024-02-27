@@ -1,9 +1,8 @@
 version: '3.4'
 
 x-env: &env
-  environment:
-    FIN_LOCATION: /fin
-    STREAMLIT_FIN_SERVER_PORT: 8501
+  FIN_LOCATION: /fin
+  STREAMLIT_FIN_SERVER_PORT: 8501
 
 volumes:
   production_traefik: {}
@@ -22,7 +21,7 @@ services:
     command: streamlit run --server.port=$STREAMLIT_FIN_SERVER_PORT --server.address=0.0.0.0 --server.baseUrlPath=$FIN_LOCATION src/app.py
 
   traefik:
-    <<: *env
+    environment: *env
     build:
       context: .
       dockerfile: ./compose/traefik/Dockerfile
