@@ -27,8 +27,8 @@ services:
     image: furyhawk/osrm-backend:${OSRM_VERSION:-latest}
     container_name: osrm_backend
     restart: always
-    expose:
-      - ${OSRM_PORT}
+    ports:
+      - ${OSRM_PORT}:${OSRM_PORT}
 
   streamlit-bai:
     environment:
