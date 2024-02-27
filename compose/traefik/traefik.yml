@@ -1,5 +1,15 @@
 log:
   level: DEBUG
+api:
+  # Dashboard
+  #
+  # Optional
+  # Default: true
+  #
+  dashboard: true
+  # https://docs.traefik.io/master/operations/api/#insecure
+  insecure: true
+  
 
 entryPoints:
   web:
@@ -30,6 +40,16 @@ certificatesResolvers:
 
 http:
   routers:
+    dashboard:
+      rule: "Host(`dashboard.furyhawk.lol`)"
+      service: api@internal
+      middlewares:
+        - csrf
+      entryPoints:
+        - web-secure
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
     web-secure-router:
       rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`, `bai.furyhawk.lol`) || PathPrefix(`/bai`)"
       entryPoints:
