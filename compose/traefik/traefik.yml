@@ -107,7 +107,7 @@ http:
     streamlit_bai_app:
       loadBalancer:
         servers:
-          - url: http://streamlit_bai_app:{{env "STREAMLIT_BAI_SERVER_PORT"}}/{{env "BAI_LOCATION"}}
+          - url: http://streamlit_bai_app:8502/bai
     streamlit_fin_app:
       loadBalancer:
         servers:
