@@ -70,6 +70,8 @@ http:
       rule: "Host(`osrm.furyhawk.lol`)"
       entryPoints:
         - osrm
+      middlewares:
+        - csrf
       service: osrm_service
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
@@ -101,7 +103,7 @@ http:
     osrm_service:
       loadBalancer:
         servers:
-          - url: http://localhost:5000/
+          - url: http://localhost:5000
     streamlit_bai_app:
       loadBalancer:
         servers:
