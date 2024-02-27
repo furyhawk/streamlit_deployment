@@ -16,6 +16,9 @@ entryPoints:
     # https
     address: ":443"
 
+  osrm:
+    address: ":5000"
+
 certificatesResolvers:
   letsencrypt:
     # https://docs.traefik.io/master/https/acme/#lets-encrypt
@@ -63,6 +66,15 @@ http:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
+    osrm-router:
+      rule: "Host(`osrm.furyhawk.lol`)"
+      entryPoints:
+        - osrm
+      service: osrm
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
+
   middlewares:
     csrf:
       # https://doc.traefik.io/traefik/middlewares/http/headers/#hostsproxyheaders
@@ -86,6 +98,10 @@ http:
         permanent: true
 
   services:
+    osrm:
+      loadBalancer:
+        servers:
+          - url: http://localhost:5000
     streamlit_bai_app:
       loadBalancer:
         servers:
