@@ -41,6 +41,9 @@ http:
       service: api@internal
       middlewares:
         - auth
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
 
     web-secure-router:
       rule: "Host(`furyhawk.lol`, `www.furyhawk.lol`, `bai.furyhawk.lol`) || PathPrefix(`/bai`)"
